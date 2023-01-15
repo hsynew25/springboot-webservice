@@ -3,6 +3,7 @@ package org.example.springboot.domain.posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.example.springboot.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor  //기본 생성자 자동 추가
                     // public Posts(){} 와 같은 효과
 @Entity //테이블과 링크될 클래스
-public class Posts {    //실제 DB의 테이블과 매칭될 클래스(Entity 클래스라고도 함)
+public class Posts extends BaseTimeEntity {    //실제 DB의 테이블과 매칭될 클래스(Entity 클래스라고도 함)
                         //JPA 사용하면 DB 데이터에 작업할 경우 실제 쿼리를 날리기 보다는 이 Entity클래스의 수정을 통해 작업함)
 
     @Id //해당 테이블의 PK 필드를 나타냄
@@ -34,5 +35,10 @@ public class Posts {    //실제 DB의 테이블과 매칭될 클래스(Entity �
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
     }
 }
